@@ -19,7 +19,7 @@ class _AllActivitiesPageState extends State<AllActivitiesPage> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Todas las Actividades",
+        title: "TODAS LAS ACTIVIDADES",
       ),
       body: activities.isEmpty
           ? const Center(child: Text("No hay actividades disponibles", style: TextStyle(fontSize: 16)))

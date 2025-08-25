@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 
 import '../providers/activities_provider.dart';
 
-class ActivityListItem extends StatefulWidget {
+class ActivityListItemSmall extends StatefulWidget {
   final Activity activity;
-  const ActivityListItem({super.key, required this.activity});
+  const ActivityListItemSmall({super.key, required this.activity});
 
   @override
-  State<ActivityListItem> createState() => _ActivityListItemState();
+  State<ActivityListItemSmall> createState() => _ActivityListItemState();
 }
 
-class _ActivityListItemState extends State<ActivityListItem> {
+class _ActivityListItemState extends State<ActivityListItemSmall> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<ActivitiesProvider>(); // escucha cambios
@@ -22,16 +22,16 @@ class _ActivityListItemState extends State<ActivityListItem> {
       onTap: () {},
       child: Card(
         color: Colors.white, // fondo blanco
-
         elevation: 0, // quita la sombra
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero, // esquinas cuadradas
         ),
+
         margin: EdgeInsets.all(20),
         child: Column(
           children: [
             AspectRatio(
-              aspectRatio:1, // ancho / alto
+              aspectRatio: 1, // ancho / alto
               child: Image.asset(
                 widget.activity.imagen,
                 fit: BoxFit.cover,
@@ -59,26 +59,26 @@ class _ActivityListItemState extends State<ActivityListItem> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                widget.activity.nombre,
-                overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                widget.activity.nombre,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-            SizedBox(height: 4),
-            // paragraph para la descripcion de la actividad
+
+            SizedBox(height: 8),
             Container(
               alignment: Alignment.centerLeft,
-              child: Text(
-                widget.activity.descripcion,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              child: Text(widget.activity.descripcion,
+                maxLines: 3,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ),
             SizedBox(height: 8),
-            Align(
+           Container(
               alignment: Alignment.centerRight,
               child: MinimalButton(
                 isSelected: true, // ya inscrito
@@ -94,7 +94,6 @@ class _ActivityListItemState extends State<ActivityListItem> {
                 },
               ),
             ),
-            SizedBox(height: 8),
           ],
         ),
       ),

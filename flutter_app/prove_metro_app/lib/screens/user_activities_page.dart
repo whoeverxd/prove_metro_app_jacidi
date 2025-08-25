@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prove_metro_app/globals/custom_app_bar.dart';
 import 'package:prove_metro_app/widgets/activity_list_item.dart';
+import 'package:prove_metro_app/widgets/activity_list_item_small.dart';
 import 'package:provider/provider.dart';
 import '../../providers/activities_provider.dart';
 
@@ -12,7 +13,7 @@ class UserActivitiesPage extends StatefulWidget {
 }
 
 class _UserActivitiesPageState extends State<UserActivitiesPage> {
-  bool isGridView = false; // 1. Estado para controlar la vista
+  bool isGridView = false; // Estado para controlar la vista
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +21,10 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
     final userActivities = provider.userActivities;
 
     return Scaffold(
-    appBar: CustomAppBar(title: "MIS ACTIVIDADES"),
+      appBar: CustomAppBar(title: "MIS ACTIVIDADES"),
       body: Column(
         children: [
-          // 2. Widget para cambiar de vista
+          // Widget para cambiar de vista
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -54,38 +55,42 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
               ],
             ),
           ),
-          // 3. Mostrar lista o cuadrícula
+          // Mostrar lista o cuadrícula
           Expanded(
-            child:
-                userActivities.isEmpty
-                    ? const Center(
-                      child: Text(
-                        "No estás inscrito en ninguna actividad",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )
-                    : isGridView
-                    ? GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // dos columnas
-                            childAspectRatio: 3 / 2,
-                            mainAxisSpacing: 8,
-                            crossAxisSpacing: 8,
-                          ),
-                      itemCount: userActivities.length,
-                      itemBuilder: (context, index) {
-                        final activity = userActivities[index];
-                        return ActivityListItem(activity: activity);
-                      },
-                    )
-                    : ListView.builder(
-                      itemCount: userActivities.length,
-                      itemBuilder: (context, index) {
-                        final activity = userActivities[index];
-                        return ActivityListItem(activity: activity);
-                      },
-                    ),
+            child: userActivities.isEmpty
+                ? const Center(
+              child: Text(
+                "No estás inscrito en ninguna actividad",
+                style: TextStyle(fontSize: 16),
+              ),
+            )
+                : isGridView
+                ? GridView.builder(
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+
+                crossAxisCount: 2, // dos columnas
+                mainAxisSpacing: 1,
+                crossAxisSpacing: 1,
+                childAspectRatio: 0.55, // <1 aumenta la altura, >1 la reduce
+
+              ),
+
+              itemCount: userActivities.length,
+              itemBuilder: (context, index) {
+                final activity = userActivities[index];
+                return ActivityListItemSmall(activity: activity);
+              },
+            )
+                : SingleChildScrollView(
+              child: Column(
+                children: userActivities
+                    .map(
+                      (activity) => ActivityListItem(activity: activity),
+                )
+                    .toList(),
+              ),
+            ),
           ),
         ],
       ),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 const Color primaryColor = Color(0xFF00A100);
 final ThemeData CustomThemeData = ThemeData(
 
+  scaffoldBackgroundColor: Colors.white, // <-- Esto asegura fondo blanco en todos los Scaffold
+
   fontFamily: 'CreatoDisplay', // Nombre que pusiste en pubspec.yaml
   textTheme: const TextTheme(
     titleLarge: TextStyle(letterSpacing: 1.5), // Espaciado mayor para títulos grandes
