@@ -20,7 +20,7 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
     final userActivities = provider.userActivities;
 
     return Scaffold(
-      appBar: CustomAppBar(title: "Mis Actividades"),
+    appBar: CustomAppBar(title: "MIS ACTIVIDADES"),
       body: Column(
         children: [
           // 2. Widget para cambiar de vista

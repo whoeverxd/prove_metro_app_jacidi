@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prove_metro_app/theme.dart';
 import 'package:provider/provider.dart';
 
 // Importa tus providers y pantallas
@@ -27,9 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Jacidi Gym',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme:CustomThemeData,
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -65,11 +64,14 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Mis actividades',
+            label: 'MIS ACTIVIDADES',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center),
-            label: 'Todas',
+            label: 'TODAS',
+
+
+
           ),
         ],
         currentIndex: _selectedIndex,

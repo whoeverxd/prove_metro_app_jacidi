@@ -59,6 +59,14 @@ flutter:
     - resources/response_calls/list_members.json
     - resources/response_calls/list_trainers.json
     - assets/images/
+  fonts:
+    - family: CreatoDisplay
+      fonts:
+        - asset: assets/fonts/creato_display/CreatoDisplay-Regular.otf
+        - asset: assets/fonts/creato_display/CreatoDisplay-Bold.otf
+          weight: 700
+        - asset: assets/fonts/creato_display/CreatoDisplay-RegularItalic.otf
+          style: italic
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
