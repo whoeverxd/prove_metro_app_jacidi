@@ -22,10 +22,13 @@ class Activity {
   factory Activity.fromJson(Map<String, dynamic> json) {
     String img = json['imagen'] ?? '';
     print('Imagen original: $img');
+
     if (!img.toLowerCase().endsWith('.jpg') &&
         !img.toLowerCase().endsWith('.png')) {
-      img = 'assets/images/HEADER_WELCOME_TO_THE_CLUB-300x169.jpg'; // imagen por defecto
+      img = 'assets/images/SALA_ACTIVIDADES_02-300x225.jpg'; // imagen por defecto es un interior de sala de actividades, bastante neutra.
     }
+    // Corregir rutas comunes con typo automáticamente
+    img = img.replaceFirst('simages/', 'images/');
     return Activity(
       id: json['idActividadColectiva'],
       nombre: json['nombreActividadColectiva'],

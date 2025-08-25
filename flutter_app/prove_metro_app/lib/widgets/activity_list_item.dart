@@ -14,42 +14,33 @@ class _ActivityListItemState extends State<ActivityListItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('HOLA ELIO');
+
       },
       child: Card(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 250,
-              width: double.infinity,
-              child: Image.asset(
-                widget.activity.imagen,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  //print('activity.imagen: ${widget.activity.toJson()}, error: $error');
-
-
-                  // Retornamos un Column que muestra el ícono y el mensaje de error
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.fitness_center,
-                        size: 50,
-                        color: Colors.red,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Error cargando la imagen:\n${widget.activity.imagen}\n$error',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-          ],
+        child: AspectRatio(
+          aspectRatio: 3 / 2, // ancho / alto
+          child: Image.asset(
+            widget.activity.imagen,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.fitness_center,
+                    size: 50,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Error cargando la imagen:\n${widget.activity.imagen}\n$error',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
