@@ -20,15 +20,36 @@ class Activity {
   });
 
   factory Activity.fromJson(Map<String, dynamic> json) {
+    String img = json['imagen'] ?? '';
+    print('Imagen original: $img');
+    if (!img.toLowerCase().endsWith('.jpg') &&
+        !img.toLowerCase().endsWith('.png')) {
+      img = 'assets/images/HEADER_WELCOME_TO_THE_CLUB-300x169.jpg'; // imagen por defecto
+    }
     return Activity(
       id: json['idActividadColectiva'],
       nombre: json['nombreActividadColectiva'],
       descripcion: json['descripcion'],
-      imagen: json['imagen'],
+      imagen: img,
+
       entrenadorId: json['entrenadorResponsable'],
       sociosInscritos: List<int>.from(json['sociosInscritos']),
       dia: json['diaClase'],
       hora: json['horaClase'],
     );
+  }
+
+  toJson() {
+
+    return {
+      'idActividadColectiva': id,
+      'nombreActividadColectiva': nombre,
+      'descripcion': descripcion,
+      'imagen': imagen,
+      'entrenadorResponsable': entrenadorId,
+      'sociosInscritos': sociosInscritos,
+      'diaClase': dia,
+      'horaClase': hora,
+    };
   }
 }
