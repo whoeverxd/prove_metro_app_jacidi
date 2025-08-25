@@ -25,10 +25,13 @@ class Activity {
 
     if (!img.toLowerCase().endsWith('.jpg') &&
         !img.toLowerCase().endsWith('.png')) {
-      img = 'assets/images/SALA_ACTIVIDADES_02-300x225.jpg'; // imagen por defecto es un interior de sala de actividades, bastante neutra.
+      img = 'images/SALA_ACTIVIDADES_02-300x225.jpg'; // imagen por defecto es un interior de sala de actividades, bastante neutra.
     }
     // Corregir rutas comunes con typo automáticamente
     img = img.replaceFirst('simages/', 'images/');
+    print('Imagen corregida: $img');
+    img = 'assets/$img';
+    print('Imagen final con assets/: $img');
     return Activity(
       id: json['idActividadColectiva'],
       nombre: json['nombreActividadColectiva'],
