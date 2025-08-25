@@ -86,7 +86,8 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
               child: Column(
                 children: userActivities
                     .map(
-                      (activity) => ActivityListItem(activity: activity),
+                      (activity) =>
+                          ActivityListItem(activity: activity),
                 )
                     .toList(),
               ),

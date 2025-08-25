@@ -20,7 +20,7 @@ No es necesario que diseñes un sistema de login, por ello tienes un único usua
 ### Actividades del usuario
 Tendrás que poder ver la lista de las actividades que el usuario está inscrito, mostrando el nombre de la actividad, el día y la hora de la misma. Al seleccionar una actividad, se debe mostrar una vista con la información al detalle y la opción de cancelar la inscripción.
 Resumiendo los puntos de esta sección:
-* Información de lista de las actividades del usuario: nombre de actividad, dia, hora.
+* Información de lista de las actividades del usuario: nombre de actividad, dia, hora. LISTO
 * Información del detalle de una actividad: Nombre de actividad, dia, hora, texto descriptivo de la actividad, fotos, nombre y apellidos del entrenador responsable y la opción de cancelar.
 * Cancelación de actividad: Elimina la inscripción a una actividad del usuario y borra la actividad de la lista del usuario.
 * La distribución y organización de la información a mostrar, queda a tu libre disposición, determnalo tú mismo el modo que consideres más adecuado.
