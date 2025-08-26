@@ -18,7 +18,13 @@ class Activity {
     required this.dia,
     required this.hora,
   });
-
+  /*
+  * PUNTOS VALIDADOS POR MI
+  * Que cargue bien un objeto válido.
+  * Que si la imagen no es jpg o png, ponga la imagen por defecto.
+  * Que corrija errores de datos (ej. simages/ → images/).
+  * Que aplique un placeholder si falta imagen.
+  * */
   factory Activity.fromJson(Map<String, dynamic> json) {
     String img = json['imagen'] ?? '';
 

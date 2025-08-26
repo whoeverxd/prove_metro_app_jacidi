@@ -10,7 +10,11 @@ class AllActivitiesPage extends StatefulWidget {
   @override
   State<AllActivitiesPage> createState() => _AllActivitiesPageState();
 }
-
+/*
+* PRUEBAS VALIDADAS POR MI
+* Si no hay actividades, muestra un mensaje "No hay actividades".
+* Si hay actividades, las muestra en una lista.
+* */
 class _AllActivitiesPageState extends State<AllActivitiesPage> {
   @override
   Widget build(BuildContext context) {
