@@ -32,7 +32,7 @@ class _FullActivityListItemState extends State<FullActivityListItem> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute<void>(builder: (context) => const Detailspage()),
+          MaterialPageRoute<void>(builder: (context) =>  Detailspage(activity: widget.activity,)),
         );
       },
       child: Container(

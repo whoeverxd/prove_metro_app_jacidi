@@ -31,7 +31,7 @@ class _ActivityListItemState extends State<ActivityListItem> {
         Navigator.push(
           context,
           MaterialPageRoute<void>(
-            builder: (context) => const Detailspage(),
+            builder: (context) => Detailspage(activity: widget.activity),
           ),
         );
       },
