@@ -36,15 +36,27 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
           // Widget para cambiar de vista
           Row(
             children: [
-              FutureBuilder<String>(
-                future: provider.getUserName(), // Llama a la función asíncrona
-                builder: (context, snapshot) {
-
-                  if (!snapshot.hasData) return const Text("Cargando entrenador...");
-                  return Text("Hola, ${snapshot.data}", style: const TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),);
-                },
+              // Padding solo al texto
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0), // espacio desde el borde
+                child: FutureBuilder<String>(
+                  future: provider.getUserName(), // Llama a la función asíncrona
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) return const Text("Cargando entrenador...");
+                    return Text(
+                      "Hola, ${snapshot.data}",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
+                ),
               ),
+
               const Spacer(), // Empuja los botones de vista a la derecha
+
               IconButton(
                 icon: Icon(
                   Icons.list,
@@ -69,6 +81,7 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
               ),
             ],
           ),
+
           // Mostrar lista o cuadrícula
           Expanded(
             child: userActivities.isEmpty
