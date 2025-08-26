@@ -38,9 +38,21 @@ dependencies:
   provider: ^6.1.5+1
   intl: ^0.20.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.0   # <-- aquí pones la dependencia del paquete
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
+  #black background: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#000000"  # negro
+  adaptive_icon_foreground: "assets/logo.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
