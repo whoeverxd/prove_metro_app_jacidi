@@ -123,62 +123,67 @@ class _FullActivityListItemState extends State<FullActivityListItem> {
               ),
             ),
             SizedBox(height: 10),
+
+            const SizedBox(height: 10),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Column(
                   children: [
-                    Icon(Icons.schedule, size: 16, color: Colors.black),
-                    const SizedBox(width: 4),
-                    Text(
-                      formatDayTime(widget.activity),
-                      style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+                    FutureBuilder<String>(
+                      future: provider.getTrainerName(widget.activity.entrenadorId),
+                      builder: (context, snapshot) {
+
+                        if (!snapshot.hasData) return const Text("Cargando entrenador...");
+                        return Text("${snapshot.data}", style: const TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),);
+                      },
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.schedule, size: 16, color: Colors.black),
+                        const SizedBox(width: 4),
+                        Text(
+                          formatDayTime(widget.activity),
+                          style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-                //trsiner
-                const SizedBox(height: 4),
-                FutureBuilder<String>(
-                  future: provider.getTrainerName(widget.activity.entrenadorId),
-                  builder: (context, snapshot) {
 
-                    if (!snapshot.hasData) return const Text("Cargando entrenador...");
-                    return Text("Entrenador: ${snapshot.data}", style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),);
-                  },
                 ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: MinimalButton(
+                    isSelected: widget.activity.sociosInscritos.contains(provider.userId),
+                    selectedText: "CANCELAR",
+                    unselectedText: "INSCRIBIRSE",
+                    selectedBackground: Colors.black,
+                    unselectedBackground: canEnroll ? Colors.white : Colors.grey.shade300,
+                    selectedTextColor: Colors.white,
+                    unselectedTextColor: Colors.black,
+                    onSelected: () {
+                      if (canEnroll) {
+                        provider.enroll(widget.activity); // Método para inscribirse
+                        setState(() {}); // Actualiza badge y botón
+                      }else{
+                        // Mostrar mensaje de error
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("No puedes inscribirte en esta actividad: ya tienes otra programada a esta hora."),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      }
+                    },
+                    onUnselected: () {
+                      provider.cancel(widget.activity); // Método para cancelar inscripción
+                      setState(() {}); // Actualiza badge y botón
+                    },
+                  ),
+                ),
+
               ],
-            ),
-            const SizedBox(height: 10),
-            SizedBox(height: 10),
-            Container(
-              alignment: Alignment.centerRight,
-              child: MinimalButton(
-                isSelected: widget.activity.sociosInscritos.contains(provider.userId),
-                selectedText: "CANCELAR",
-                unselectedText: "INSCRIBIRSE",
-                selectedBackground: Colors.black,
-                unselectedBackground: canEnroll ? Colors.white : Colors.grey.shade300,
-                selectedTextColor: Colors.white,
-                unselectedTextColor: Colors.black,
-                onSelected: () {
-                  if (canEnroll) {
-                    provider.enroll(widget.activity); // Método para inscribirse
-                    setState(() {}); // Actualiza badge y botón
-                  }else{
-                    // Mostrar mensaje de error
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("No puedes inscribirte en esta actividad: ya tienes otra programada a esta hora."),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  }
-                },
-                onUnselected: () {
-                  provider.cancel(widget.activity); // Método para cancelar inscripción
-                  setState(() {}); // Actualiza badge y botón
-                },
-              ),
             ),
           ],
         ),

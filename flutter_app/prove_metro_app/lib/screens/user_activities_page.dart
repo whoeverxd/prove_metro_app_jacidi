@@ -4,6 +4,7 @@ import 'package:prove_metro_app/widgets/activity_list_item.dart';
 import 'package:prove_metro_app/widgets/activity_list_item_small.dart';
 import 'package:provider/provider.dart';
 import '../../providers/activities_provider.dart';
+import '../widgets/bannerWidget.dart';
 /**
  * VALIDADO POR MI
  * * Si el usuario no está inscrito en ninguna actividad, muestra un mensaje "No estás inscrito en ninguna actividad".
@@ -30,36 +31,43 @@ class _UserActivitiesPageState extends State<UserActivitiesPage> {
       appBar: CustomAppBar(title: "MIS ACTIVIDADES", homeMode: true),
       body: Column(
         children: [
+          const BannerWidget(), // <-- Agregamos el banner aquí
+
           // Widget para cambiar de vista
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.list,
-                    color: !isGridView ? Colors.black : Colors.grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isGridView = false;
-                    });
-                  },
+          Row(
+            children: [
+              FutureBuilder<String>(
+                future: provider.getUserName(), // Llama a la función asíncrona
+                builder: (context, snapshot) {
+
+                  if (!snapshot.hasData) return const Text("Cargando entrenador...");
+                  return Text("Hola, ${snapshot.data}", style: const TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),);
+                },
+              ),
+              const Spacer(), // Empuja los botones de vista a la derecha
+              IconButton(
+                icon: Icon(
+                  Icons.list,
+                  color: !isGridView ? Colors.black : Colors.grey,
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.grid_view,
-                    color: isGridView ? Colors.black : Colors.grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isGridView = true;
-                    });
-                  },
+                onPressed: () {
+                  setState(() {
+                    isGridView = false;
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.grid_view,
+                  color: isGridView ? Colors.black : Colors.grey,
                 ),
-              ],
-            ),
+                onPressed: () {
+                  setState(() {
+                    isGridView = true;
+                  });
+                },
+              ),
+            ],
           ),
           // Mostrar lista o cuadrícula
           Expanded(

@@ -50,4 +50,11 @@ class ActivitiesProvider extends ChangeNotifier {
     final trainer = trainers.firstWhere((t) => t.id == entrenadorId, orElse: () => Trainer(id: 0, nombre: 'Desconocido', apellidos: '', dni: '', cv: '', actividades: [],));
     return trainer.fullName;
   }
+  //get user name
+  Future<String>? getUserName() async {
+    final users = await loadMembers();
+    //esto no se hace sin el else, pero estoy seguro de que el userId existe
+    final user = users.firstWhere((u) => u.id == userId);
+    return user != null ? user.fullName : 'Desconocido';
+  }
 }
