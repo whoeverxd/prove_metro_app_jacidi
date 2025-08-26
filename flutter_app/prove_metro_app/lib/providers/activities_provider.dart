@@ -48,6 +48,6 @@ class ActivitiesProvider extends ChangeNotifier {
 
     final trainers = await loadTrainers();
     final trainer = trainers.firstWhere((t) => t.id == entrenadorId, orElse: () => Trainer(id: 0, nombre: 'Desconocido', apellidos: '', dni: '', cv: '', actividades: [],));
-    return trainer.nombre;
+    return trainer.fullName;
   }
 }

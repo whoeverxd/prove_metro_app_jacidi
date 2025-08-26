@@ -9,12 +9,8 @@ class Detailspage extends StatelessWidget {
     return Scaffold(
 
       appBar:  CustomAppBar(title: 'DETALLES DE LA ACTIVIDAD',
-        backBtn: IconButton(onPressed:()
-            {
-              Navigator.pop(context);
-            }, icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black))
 
-        ,),
+        ),
 
       body: Container(
         width: double.infinity,

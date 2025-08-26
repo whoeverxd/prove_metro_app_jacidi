@@ -32,20 +32,20 @@ class _AllActivitiesPageState extends State<AllActivitiesPage> {
                   style: TextStyle(fontSize: 16),
                 ),
               )
-              : ListView.builder(
-                itemCount: activities.length,
-                itemBuilder: (context, index) {
-                  final activity = activities[index];
-                  final isEnrolled = provider.isEnrolled(activity);
-                  final canEnroll = provider.canEnroll(activity);
-                  print(activity.imagen);
-                  return FullActivityListItem(
-                    activity: activity,
-                    isEnrolled: isEnrolled,
-                    canEnroll: canEnroll,
-                  );
-                },
-              ),
+              : ListView.separated(
+            itemCount: activities.length,
+            itemBuilder: (context, index) {
+              final activity = activities[index];
+              final isEnrolled = provider.isEnrolled(activity);
+              final canEnroll = provider.canEnroll(activity);
+              return FullActivityListItem(
+                activity: activity,
+                isEnrolled: isEnrolled,
+                canEnroll: canEnroll,
+              );
+            },
+            separatorBuilder: (context, index) => const Divider(), // separación de 16px
+          )
     );
   }
 }

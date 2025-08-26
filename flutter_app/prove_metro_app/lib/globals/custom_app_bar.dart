@@ -42,16 +42,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           if (!homeMode)
             backBtn ??
                 IconButton(
-                  onPressed: () => Navigator.of(context).pop(true),
+                  onPressed:
+                      () => Navigator.of(context, rootNavigator: true).pop(),
                   icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
                 )
           else
             const SizedBox(width: 48), // espacio para mantener simetría
-
           // Título centrado
           Expanded(
             child: Center(
-              child: titleWidget ??
+              child:
+                  titleWidget ??
                   Text(
                     title ?? "",
                     style: const TextStyle(

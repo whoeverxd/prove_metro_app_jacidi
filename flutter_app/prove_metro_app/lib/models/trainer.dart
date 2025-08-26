@@ -25,4 +25,18 @@ class Trainer {
       actividades: List<int>.from(json['actividades']),
     );
   }
+  /// Getter calculado → devuelve nombre completo sin comas raras
+  String get fullName {
+    // Divide por coma y elimina espacios extra
+    final parts = this.apellidos.split(',')
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+
+    // Une los apellidos en orden natural con espacios
+    final cleanApellidos = parts.join(' ');
+
+    return "$nombre $cleanApellidos";
+  }
+
 }
