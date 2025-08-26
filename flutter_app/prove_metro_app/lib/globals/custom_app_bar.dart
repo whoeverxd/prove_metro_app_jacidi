@@ -46,7 +46,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         children: [
           if (widget.titleWidget == null && widget.title != null) ...[
             AppBar(
-              automaticallyImplyLeading: true,
+              automaticallyImplyLeading: false,
               centerTitle: true,
               elevation: 0,
               title: Container(
@@ -63,14 +63,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
             ),
           ],
           AppBar(
-            automaticallyImplyLeading: true,
+            automaticallyImplyLeading: false,
             centerTitle: widget.centerTitle,
             iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             surfaceTintColor: Colors.transparent,
             title: widget.titleWidget,
-
+            leading: widget.backBtn ??
+                (!(widget.homeMode)
+                    ? IconButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    icon: const Icon(Icons.arrow_back_ios,
+                        color: Colors.black))
+                    : null),
             actions: widget.actionBtn,
             elevation: 1,
             toolbarHeight: 80,

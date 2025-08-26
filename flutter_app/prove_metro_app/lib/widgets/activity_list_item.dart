@@ -126,34 +126,30 @@ class _ActivityListItemState extends State<ActivityListItem> {
                       ),
                       Container(
                         child: MinimalButton(
-                          isSelected: isEnrolled,
+                          isSelected: isEnrolled, // true si ya está inscrito
                           selectedText: "CANCELAR",
                           unselectedText: "INSCRIBIRSE",
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 10,
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           onSelected: () {
-                            provider.cancel(widget.activity);
+                            // Este se llama cuando NO está inscrito y se presiona
+                            provider.enroll(widget.activity);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(
-                                  "Has cancelado la actividad ${widget.activity.nombre}",
-                                ),
+                                content: Text("Te has inscrito en ${widget.activity.nombre}"),
                               ),
                             );
                           },
                           onUnselected: () {
-                            provider.enroll(widget.activity);
+                            // Este se llama cuando está inscrito y se presiona
+                            provider.cancel(widget.activity);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(
-                                  "Te has inscrito en ${widget.activity.nombre}",
-                                ),
+                                content: Text("Has cancelado la actividad ${widget.activity.nombre}"),
                               ),
                             );
                           },
                         ),
+
                       ),
                     ],
                   ),
