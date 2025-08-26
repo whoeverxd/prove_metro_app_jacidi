@@ -13,7 +13,7 @@ class Activity {
     required this.nombre,
     required this.descripcion,
     required this.imagen,
-    required this.entrenadorId,
+    required this.entrenadorId, //relacion con el Trainer
     required this.sociosInscritos,
     required this.dia,
     required this.hora,

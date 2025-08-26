@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
-
 import '../theme.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? backBtn;
   final List<Widget>? actionBtn;
   final Widget? titleWidget;
   final String? title;
   final bool homeMode;
-  final bool centerTitle;
-  const CustomAppBar(
-      {Key? key,
-      this.backBtn,
-      this.actionBtn,
-      this.title,
-      this.titleWidget,
-      this.homeMode = false,
-      this.centerTitle = false})
-      : super(key: key);
+
+  const CustomAppBar({
+    Key? key,
+    this.backBtn,
+    this.actionBtn,
+    this.title,
+    this.titleWidget,
+    this.homeMode = false,
+  }) : super(key: key);
 
   @override
-  Size get preferredSize => Size.fromHeight(65);
-  @override
-  _CustomAppBarState createState() => _CustomAppBarState();
-}
+  Size get preferredSize => const Size.fromHeight(65);
 
-class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: preferredSize.height,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -38,62 +31,57 @@ class _CustomAppBarState extends State<CustomAppBar> {
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 0,
             blurRadius: 5,
-            offset: const Offset(0, 2), // changes position of shadow
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: Stack(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (widget.titleWidget == null && widget.title != null) ...[
-            AppBar(
-              automaticallyImplyLeading: false,
-              centerTitle: true,
-              elevation: 0,
-              title: Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Text(
-                  widget.title!,
-                  style: TextStyle(
+          // Back button
+          if (!homeMode)
+            backBtn ??
+                IconButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+                )
+          else
+            const SizedBox(width: 48), // espacio para mantener simetría
+
+          // Título centrado
+          Expanded(
+            child: Center(
+              child: titleWidget ??
+                  Text(
+                    title ?? "",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
-                      fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
             ),
-          ],
-          AppBar(
-            automaticallyImplyLeading: false,
-            centerTitle: widget.centerTitle,
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            title: widget.titleWidget,
-            leading: widget.backBtn ??
-                (!(widget.homeMode)
-                    ? IconButton(
-                    onPressed: () => Navigator.of(context).pop(true),
-                    icon: const Icon(Icons.arrow_back_ios,
-                        color: Colors.black))
-                    : null),
-            actions: widget.actionBtn,
-            elevation: 1,
-            toolbarHeight: 80,
           ),
+
+          // Botones de acción
+          if (actionBtn != null)
+            Row(children: actionBtn!)
+          else
+            const SizedBox(width: 48), // espacio para mantener simetría
         ],
       ),
     );
-
   }
 }
 
+/// AppBar simple con logo centrado
 AppBar simpleAppBar() {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: primaryColor,
     centerTitle: true,
     leading: null,
-    title: Center(child: Image.asset('assets/logo.png', height: 50)),
+    title: Center(child: Image.asset('assets/logo_w.png', height: 50)),
   );
 }
