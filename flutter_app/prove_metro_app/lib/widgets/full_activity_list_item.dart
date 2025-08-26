@@ -165,7 +165,13 @@ class _FullActivityListItemState extends State<FullActivityListItem> {
                     onSelected: () {
                       if (canEnroll) {
                         provider.enroll(widget.activity); // Método para inscribirse
-                        setState(() {}); // Actualiza badge y botón
+                        //show snackbar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Inscripción realizada con éxito."),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       }else{
                         // Mostrar mensaje de error
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -178,7 +184,12 @@ class _FullActivityListItemState extends State<FullActivityListItem> {
                     },
                     onUnselected: () {
                       provider.cancel(widget.activity); // Método para cancelar inscripción
-                      setState(() {}); // Actualiza badge y botón
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Inscripción cancelada."),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
                     },
                   ),
                 ),

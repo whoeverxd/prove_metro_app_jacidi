@@ -27,5 +27,12 @@ final ThemeData CustomThemeData = ThemeData(
       letterSpacing: 1.0,
     ),
   ),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: Colors.black,
+    contentTextStyle: TextStyle(
+      color: Colors.white, // texto en blanco para que contraste con el fondo
+      fontFamily: 'CreatoDisplay',
+    ),
+  ),
 
 );

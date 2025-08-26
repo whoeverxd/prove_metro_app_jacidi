@@ -55,3 +55,4 @@ Dejo aquí algunas anotaciones que considero relevantes al momento de evaluar el
 - en mi caso las actividades que no se pueden reservar(porque el horario choca)  decidi mostrarlas pero con botón “Inscribirse” deshabilitado, en vez de simplemente ocultarlas o discriminarlas. mi intencion es dar transparencia al usuario sobre qué opciones existen.
 - Se maneja un estado vacío mostrando un mensaje claro cuando no hay actividades disponibles.
 - En los modelos de Trainer, Member  añadí un getter  fullName que limpia apellidos separados por coma, mostrando el nombre completo de forma natural en la UI. 
+- No he discriminado tanto los datos en la lista para tener mayor atractivo visual, pero se puede hacer sin problema., quise simplemente mostrar la informacion de forma clara y atractiva.

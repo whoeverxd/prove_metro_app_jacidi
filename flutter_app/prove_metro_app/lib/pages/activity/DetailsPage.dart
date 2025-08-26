@@ -156,6 +156,13 @@ class Detailspage extends StatelessWidget {
                 onSelected: () {
                   if (canEnroll) {
                     provider.enroll(activity);
+                    //show snackbar
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Te has inscrito en la actividad ${activity.nombre}"),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -169,6 +176,12 @@ class Detailspage extends StatelessWidget {
                 },
                 onUnselected: () {
                   provider.cancel(activity);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Has cancelado la actividad ${activity.nombre}"),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
                 },
               ),
             ),
