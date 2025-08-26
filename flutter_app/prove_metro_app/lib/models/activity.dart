@@ -21,7 +21,7 @@ class Activity {
 
   factory Activity.fromJson(Map<String, dynamic> json) {
     String img = json['imagen'] ?? '';
-    print('Imagen original: $img');
+
 
     if (!img.toLowerCase().endsWith('.jpg') &&
         !img.toLowerCase().endsWith('.png')) {
@@ -29,9 +29,7 @@ class Activity {
     }
     // Corregir rutas comunes con typo automáticamente
     img = img.replaceFirst('simages/', 'images/');
-    print('Imagen corregida: $img');
     img = 'assets/$img';
-    print('Imagen final con assets/: $img');
     return Activity(
       id: json['idActividadColectiva'],
       nombre: json['nombreActividadColectiva'],

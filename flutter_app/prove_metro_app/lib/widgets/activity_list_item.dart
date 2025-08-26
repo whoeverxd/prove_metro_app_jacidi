@@ -5,6 +5,8 @@ import 'package:prove_metro_app/widgets/MinimalButton.dart';
 import 'package:provider/provider.dart';
 import '../providers/activities_provider.dart';
 import 'package:intl/intl.dart';
+//import utils/functions.dart
+import '../utils/functions.dart';
 
 class ActivityListItem extends StatefulWidget {
   final Activity activity;
@@ -17,11 +19,12 @@ class ActivityListItem extends StatefulWidget {
 class _ActivityListItemState extends State<ActivityListItem> {
   @override
   Widget build(BuildContext context) {
+    print(widget.activity.toJson());
     final provider = context.watch<ActivitiesProvider>(); // escucha cambios
     final isEnrolled = provider.isEnrolled(widget.activity);
 
     // Formato de fecha y hora
-    final String diaHora = _formatDayTime(widget.activity);
+    final String diaHora = formatDayTime(widget.activity);
 
     return GestureDetector(
       onTap: () {
@@ -162,17 +165,5 @@ class _ActivityListItemState extends State<ActivityListItem> {
     );
   }
 
-  String _formatDayTime(Activity activity) {
-    // Si tu modelo tiene DateTime
-    if (activity.dia is DateTime && activity.hora is TimeOfDay) {
-      final date = activity.dia as DateTime;
-      final time = activity.hora as TimeOfDay;
-      final formattedDate = DateFormat('EEEE, d MMM y', 'es_ES').format(date);
-      final formattedTime = time.format(context);
-      return '$formattedDate • $formattedTime';
-    }
 
-    // Si solo tienes strings
-    return '${activity.dia} • ${activity.hora}';
-  }
 }
