@@ -3,6 +3,7 @@ import 'package:prove_metro_app/models/activity.dart';
 import 'package:prove_metro_app/widgets/MinimalButton.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/activity/DetailsPage.dart';
 import '../providers/activities_provider.dart';
 
 class ActivityListItemSmall extends StatefulWidget {
@@ -19,7 +20,14 @@ class _ActivityListItemState extends State<ActivityListItemSmall> {
     final provider = context.watch<ActivitiesProvider>(); // escucha cambios
     final isEnrolled = provider.isEnrolled(widget.activity);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (context) => const Detailspage(),
+          ),
+        );
+      },
       child: Card(
         color: Colors.white, // fondo blanco
         elevation: 0, // quita la sombra
