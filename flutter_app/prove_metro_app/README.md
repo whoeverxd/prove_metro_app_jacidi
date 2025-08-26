@@ -45,3 +45,13 @@ Ten en cuenta que esta prueba no se trata solo de cumplir todos los puntos, sino
 
 ## Candidate notes
 Cualquier instrucción sobre la ejecución o cambio que consideres relevante, indicalo aquí abajo. Eres libre de usar cualquier herramienta o recurso y cambiar lo que consideres mejor, pero comentanos el que y el por que.
+
+## Anotaciones 
+Dejo aquí algunas anotaciones que considero relevantes al momento de evaluar el codigo:
+- He usado providers: Implementé ActivitiesProvider y TrainersProvider usando provider para centralizar la carga de datos, manejar inscripciones y exponer métodos reutilizables.
+- Respecto a la estructura de carpetas Mantengo la carpeta resources/ para JSON e imágenes en vez de assets/ Queria mantener el repositorio inicial, pero en el caso de las imagenes se puede cambiar sin problema.
+- Validaciones de datos: El JSON de actividades tenía errores (ej. imagen: "True" o rutas como simages/...). Decidí no modificar los archivos de prueba, sino manejarlo con validaciones y un defaultImage, mostrando robustez ante datos incorrectos. se puede validar aun mas , pero creo que para efectos de la prueba es suficiente. ademas si estamos simulando un api real, yo no tengo porque modificar los datos, sino trabajar con lo que me llega. 
+- Agregue una seccion de banner en la pantalla de actividades del usuario, ya que vi el asset en la carpeta de imageneses y me parecio que aportaba al diseño.
+- en mi caso las actividades que no se pueden reservar(porque el horario choca)  decidi mostrarlas pero con botón “Inscribirse” deshabilitado, en vez de simplemente ocultarlas o discriminarlas. mi intencion es dar transparencia al usuario sobre qué opciones existen.
+- Se maneja un estado vacío mostrando un mensaje claro cuando no hay actividades disponibles.
+- En los modelos de Trainer, Member  añadí un getter  fullName que limpia apellidos separados por coma, mostrando el nombre completo de forma natural en la UI. 
