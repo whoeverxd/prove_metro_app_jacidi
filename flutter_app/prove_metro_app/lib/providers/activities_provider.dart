@@ -15,11 +15,8 @@ class ActivitiesProvider extends ChangeNotifier {
   List<Activity> get userActivities => _userActivities;
 
   Future<void> loadData() async {
-    print('Loading activities for user $userId');
     _allActivities = await loadActivities(); // desde JSON
     _userActivities = _allActivities.where((a) => a.sociosInscritos.contains(userId)).toList();
-
-
     notifyListeners();
   }
 

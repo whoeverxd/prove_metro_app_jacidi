@@ -19,13 +19,10 @@ class ActivityListItem extends StatefulWidget {
 class _ActivityListItemState extends State<ActivityListItem> {
   @override
   Widget build(BuildContext context) {
-    print(widget.activity.toJson());
     final provider = context.watch<ActivitiesProvider>(); // escucha cambios
     final isEnrolled = provider.isEnrolled(widget.activity);
-
     // Formato de fecha y hora
     final String diaHora = formatDayTime(widget.activity);
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -132,13 +129,18 @@ class _ActivityListItemState extends State<ActivityListItem> {
                           isSelected: isEnrolled, // true si ya está inscrito
                           selectedText: "CANCELAR",
                           unselectedText: "INSCRIBIRSE",
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
                           onSelected: () {
                             // Este se llama cuando NO está inscrito y se presiona
                             provider.enroll(widget.activity);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text("Te has inscrito en ${widget.activity.nombre}"),
+                                content: Text(
+                                  "Te has inscrito en ${widget.activity.nombre}",
+                                ),
                               ),
                             );
                           },
@@ -147,12 +149,13 @@ class _ActivityListItemState extends State<ActivityListItem> {
                             provider.cancel(widget.activity);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text("Has cancelado la actividad ${widget.activity.nombre}"),
+                                content: Text(
+                                  "Has cancelado la actividad ${widget.activity.nombre}",
+                                ),
                               ),
                             );
                           },
                         ),
-
                       ),
                     ],
                   ),
@@ -164,6 +167,4 @@ class _ActivityListItemState extends State<ActivityListItem> {
       ),
     );
   }
-
-
 }

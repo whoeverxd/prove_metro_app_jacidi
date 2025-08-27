@@ -55,4 +55,4 @@ Dejo aquí algunas anotaciones que considero relevantes al momento de evaluar el
 - Se maneja un estado vacío mostrando un mensaje claro cuando no hay actividades disponibles.
 - En los modelos de Trainer, Member  añadí un getter  fullName que limpia apellidos separados por coma, mostrando el nombre completo de forma natural en la UI. 
 - No he discriminado tanto los datos en la lista para tener mayor atractivo visual, pero se puede hacer sin problema., quise simplemente mostrar la informacion de forma clara y atractiva.
-- como ul
+- como ultima observacion, pude simplemente haber discriminado la actividad de padel, y simplemente no mostrarla en ningun lado ya que sus datos no eran consistentes de alguna forma. pero siendo realistas, ya tenia un usuario inscrito en esa actividad y no podia simplemente eliminarla. arreglar ese titulo y esa imagen ya seria algo del lado del servidor. 
